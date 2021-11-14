@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { navIcons, navLinks } from "../utils/help";
@@ -6,22 +6,26 @@ import { useUserContext } from "../context";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const {handleSidebar} = useUserContext();
+  const { handleSidebar } = useUserContext();
   return (
     <Nav>
       <div className="nav-center">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Ikea_logo.svg"
-          alt="ikea-logo"
-          className="logo"
-        />
-        <FaBars className="bars" onClick={handleSidebar}  />
+        <Link to="/">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Ikea_logo.svg"
+            alt="ikea-logo"
+            className="logo"
+          />
+        </Link>
+        <FaBars className="bars" onClick={handleSidebar} />
       </div>
       <ul className="nav-links">
         {navLinks.map((item) => {
-          return <Link key={item.id} to={item.path}>
-           <li >{item.name}</li>
-          </Link>
+          return (
+            <Link key={item.id} to={item.path}>
+              <li>{item.name}</li>
+            </Link>
+          );
         })}
       </ul>
       <div className="nav-functions">
@@ -30,7 +34,7 @@ const Navbar = () => {
             <li key={item.id}>
               {item.name}
               {item.icon}
-              {item.name==="cart"&&<span className="cart-count">1</span>}
+              {item.name === "cart" && <span className="cart-count">1</span>}
             </li>
           );
         })}
@@ -40,10 +44,10 @@ const Navbar = () => {
 };
 
 const Nav = styled.header`
-box-shadow:0px 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   padding: 0px 100px;
   font-size: 1.5rem;
-  font-weight:500;
+  font-weight: 500;
   height: 4rem;
   display: flex;
   justify-content: space-between;
@@ -63,23 +67,23 @@ box-shadow:0px 5px 15px rgba(0,0,0,0.1);
       }
     }
   }
-  .nav-functions{
-    display:flex;
-    li{
-      margin-left:2rem;
-      &:first-child{
+  .nav-functions {
+    display: flex;
+    li {
+      margin-left: 2rem;
+      &:first-child {
         position: relative;
       }
-      .cart-count{
-        top:-10px;
-        right:-15px;
-        background-color:orange;
-        display:inline-block;
-        width:1.5rem;
-        height:1.5rem;
-        text-align:center;
-        border-radius:50%;
-        position:absolute;
+      .cart-count {
+        top: -10px;
+        right: -15px;
+        background-color: orange;
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        text-align: center;
+        border-radius: 50%;
+        position: absolute;
       }
     }
   }

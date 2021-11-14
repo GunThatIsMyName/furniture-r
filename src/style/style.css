@@ -24,3 +24,13 @@ img{
     border: none;
     outline: none;
 }
+
+.underline{
+    position: absolute;
+    left: 50%;
+    width: 40%;
+    max-width: 200px;
+    height: 3px;
+    background-color:rgb(251,217,19);
+    transform: translateX(-50%);
+}

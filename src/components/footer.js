@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Foot>
       <h3>IKEA</h3>
-      <p>IKEAs a Swedish-origin Dutch (Netherlands)-headquartered multinational conglomerate that designs and sells ready-to-assemble furniture, kitchen appliances and home accessories, among other goods and home services. Founded in Sweden in 1943 by 17-year-old Ingvar Kamprad, IKEA has been the world's largest furniture retailer since 2008.</p>
+      <p>IKEAs a Swedish-origin Dutch ready-to-assemble furniture, kitchen appliances and home accessories.</p>
       <h4>Copyright &copy; {new Date().getFullYear()}</h4>
     </Foot>
   );

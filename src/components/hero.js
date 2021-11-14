@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Hero = () => {
@@ -15,7 +16,9 @@ const Hero = () => {
           eius adipisci rerum similique ducimus repudiandae incidunt accusamus
           tenetur architecto explicabo saepe.
         </p>
-        <button className="btn hero-btn">Shop Now</button>
+        <Link to="/products">
+          <button className="btn hero-btn">Shop Now</button>
+        </Link>
       </div>
       <div className="hero-img">
         <img

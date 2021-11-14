@@ -20,7 +20,7 @@ const Sidebar = () => {
 
       <ul className="nav-links">
         {navLinks.map((item) => {
-          return <Link key={item.id} to={item.path}>
+          return <Link key={item.id} to={item.path} onClick={handleSidebar}>
            <li >{item.name}</li>
            </Link>
         })}
