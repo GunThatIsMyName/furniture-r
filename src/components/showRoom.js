@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import Loading from "./loading";
 const ShowRoom = () => {
-  const { getShowRoom, mainItem } = useUserContext();
-
-  useEffect(() => {
-    getShowRoom();
-    // eslint-disable-next-line
-  }, []);
+  const { showRoomItems,error,loading, } = useUserContext();
 
   return (
     <Wrapper className="section-center">
       <h1>Products List</h1>
       <div className="underline"></div>
-      <div className="products">
-        {mainItem &&
-          mainItem.map((item) => {
+        {loading&&<Loading />}
+        <div className="products">
+        {showRoomItems &&
+          showRoomItems.map((item) => {
             const { name, price, image, id } = item;
             return (
               <div key={id} className="product">
@@ -29,12 +26,13 @@ const ShowRoom = () => {
                 <img src={image} alt={name} />
                 <div className="product-info">
                   <h3>{name}</h3>
-                  <h3 className="price">${price}</h3>
+                  <h3 className="price">${price/100}</h3>
                 </div>
               </div>
             );
-          })}
+          }).splice(0,3)}
       </div>
+        {error&& <h1>Sorry,Coudn't get a data refresh site.</h1>}
       <Link to="products">
         <button className="btn btn-products">Show More</button>
       </Link>

@@ -10,6 +10,7 @@ body{
     color: rgb(27, 27, 27);
     text-transform: capitalize;
     background-color: #ffffff;
+    box-sizing: border-box;
 }
 
 .section-center{

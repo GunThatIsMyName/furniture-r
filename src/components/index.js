@@ -8,6 +8,8 @@ import Station from "./Station";
 import Filters from "./filters";
 import Footer from "./footer";
 import Sidebar from "./sidebar";
+import Loading from "./loading";
+import ProductsList from "./productsList";
 
 export {
   Sidebar,
@@ -20,4 +22,6 @@ export {
   Email,
   AboutHero,
   Station,
+  Loading,
+  ProductsList
 };

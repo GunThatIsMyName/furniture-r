@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import "./style/style.css"
 import App from './App';
-import { UserProvider } from './context';
+import { ProductProvider, UserProvider } from './context';
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <ProductProvider>
+        <App />
+      </ProductProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,4 +1,4 @@
-import {FaShoppingCart,FaUserAlt} from 'react-icons/fa'
+import {FaShoppingCart,FaUserAlt,FaShip,FaParachuteBox,FaSnowboarding} from 'react-icons/fa'
 
 const products_url = 'https://course-api.com/react-store-products';
 
@@ -16,4 +16,18 @@ const navIcons =[
     {id:2,icon:<FaUserAlt/>,name:"login"},
 ]
 
-export {navLinks,navIcons,products_url,single_product_url}
+const infoData = [
+    {id:1,icon:<FaShip />,name:"mission",desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi"},
+    {id:2,icon:<FaParachuteBox />,name:"vision",desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi"},
+    {id:3,icon:<FaSnowboarding />,name:"history",desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi"},
+]
+
+const formatPrice = (price) => {
+    const newNumber= new Intl.NumberFormat('en-US',{
+        style:"currency",
+        currency:"USD"
+    }).format(price/100)
+    return newNumber;
+}
+
+export {navLinks,navIcons,products_url,single_product_url,infoData,formatPrice}
