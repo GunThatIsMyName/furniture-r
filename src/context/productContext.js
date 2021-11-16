@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
-import { FaIgloo } from "react-icons/fa";
 import { productReducer, productState } from "../reducer/productReducer";
 import { filter_product, load_products, reset_filters, update_filters, view_type } from "./actioin";
 import { useUserContext } from "./UserContext";

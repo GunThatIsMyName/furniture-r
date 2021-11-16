@@ -91,19 +91,11 @@ export const productReducer = (state, action) => {
           return item.shipping
         })
       }
-      // if (colors !== "all") {
-      //   tempProducts = tempProducts.filter((product) => {
-      //     return product.colors.find((c) => c === colors);
-      //   });
-      // }
-
-      console.log(tempProduct, "temp");
       return {
         ...state,
         filterdProduct: tempProduct,
       };
     case view_type:
-      console.log(action,"action")
       if(action.payload==="grid"){
         return {...state,isGridView:true}
       }else{
