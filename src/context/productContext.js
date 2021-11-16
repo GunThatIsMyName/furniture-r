@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { productReducer, productState } from "../reducer/productReducer";
 import { filter_product, load_products, reset_filters, update_filters } from "./actioin";
 import { useUserContext } from "./UserContext";
@@ -8,6 +8,10 @@ const ProductContext = React.createContext();
 const ProductProvider=({children})=>{
     const {productsItems}=useUserContext();
     const [state,dispatch]=useReducer(productReducer,productState)
+
+    const handleGridView=()=>{
+        dispatch({type:})
+    }
     const handleCategory=(e)=>{
         let {name} = e.target;
         let {value}=e.target;
@@ -33,7 +37,7 @@ const ProductProvider=({children})=>{
     },[state.filter])
 
     return(
-        <ProductContext.Provider value={{...state,handleCategory,clearFilters}}>
+        <ProductContext.Provider value={{...state,handleCategory,clearFilters,handleGridView}}>
             {children}
         </ProductContext.Provider>
     )

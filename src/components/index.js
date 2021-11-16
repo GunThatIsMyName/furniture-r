@@ -11,6 +11,8 @@ import Sidebar from "./sidebar";
 import Loading from "./loading";
 import ProductsList from "./productsList";
 import Sort from "./sort";
+import GridView from "./gridView";
+import ListView from "./listView";
 
 export {
   Sidebar,
@@ -25,5 +27,7 @@ export {
   Station,
   Loading,
   ProductsList,
-  Sort
+  Sort,
+  GridView,
+  ListView
 };
