@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
+import { FaIgloo } from "react-icons/fa";
 import { productReducer, productState } from "../reducer/productReducer";
-import { filter_product, load_products, reset_filters, update_filters } from "./actioin";
+import { filter_product, load_products, reset_filters, update_filters, view_type } from "./actioin";
 import { useUserContext } from "./UserContext";
 
 const ProductContext = React.createContext();
@@ -9,8 +10,17 @@ const ProductProvider=({children})=>{
     const {productsItems}=useUserContext();
     const [state,dispatch]=useReducer(productReducer,productState)
 
-    const handleGridView=()=>{
-        dispatch({type:})
+    const handleGridView=(e)=>{
+        let viewType;
+        const {nodeName}=e.target;
+        if(nodeName==="BUTTON"){
+            viewType=e.target.dataset.view;
+        }else if(nodeName==="svg"){
+            viewType=e.target.parentElement.dataset.view;
+        }else{
+            viewType=e.target.parentElement.parentElement.dataset.view;
+        }
+        dispatch({type:view_type,payload:viewType})
     }
     const handleCategory=(e)=>{
         let {name} = e.target;

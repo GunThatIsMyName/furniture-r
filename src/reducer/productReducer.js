@@ -3,11 +3,13 @@ import {
   load_products,
   reset_filters,
   update_filters,
+  view_type,
 } from "../context/actioin";
 
 export const productState = {
   allProdcuts: [],
   filterdProduct: [],
+  isGridView:true,
   filter: {
     search: "",
     category: "all",
@@ -100,7 +102,14 @@ export const productReducer = (state, action) => {
         ...state,
         filterdProduct: tempProduct,
       };
-    default:
+    case view_type:
+      console.log(action,"action")
+      if(action.payload==="grid"){
+        return {...state,isGridView:true}
+      }else{
+        return{...state,isGridView:false}
+      }
+      default:
       throw new Error();
   }
 };

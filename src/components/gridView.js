@@ -5,7 +5,6 @@ import { formatPrice } from "../utils/help";
 import styled from "styled-components";
 
 const GridView = ({product}) => {
-    console.log(product,"productproductproduct")
   return (
     <Wrapper>
         {product.map(item=>{

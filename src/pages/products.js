@@ -9,7 +9,7 @@ const Products = () => {
       <Wrapper>
         <div className="product-page">
           <Filters />
-          <div>
+          <div className="product-list">
             <Sort />
             <ProductsList />
           </div>
@@ -21,6 +21,10 @@ const Products = () => {
 
 const Wrapper = styled.section`
 margin:5rem 7rem;
+.product-list{
+  width:1000px;
+  margin:0 auto;
+}
 @media screen and (min-width:1140px){
     .product-page {
       display: grid;

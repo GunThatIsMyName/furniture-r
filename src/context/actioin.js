@@ -10,3 +10,7 @@ export const update_filters="update_filters";
 export const load_products="load_products";
 export const reset_filters="Reset_Filters";
 export const filter_product="Filter_products";
+
+// grid
+
+export const view_type="View_TYPE"

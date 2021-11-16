@@ -12,7 +12,7 @@ const Sort = () => {
         <button onClick={handleGridView} data-view="grid" className="sort-btn">
           <BsFillGridFill />
         </button>
-        <button onClick={handleViewType} data-view="list" className="sort-btn">
+        <button onClick={handleGridView} data-view="list" className="sort-btn">
           <BsList />
         </button>
       </div>
