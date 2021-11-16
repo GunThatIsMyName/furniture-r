@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Filters, Station, ProductsList } from "../components";
+import { Filters, Station, ProductsList, Sort } from "../components";
 
 const Products = () => {
   return (
@@ -9,7 +9,10 @@ const Products = () => {
       <Wrapper>
         <div className="product-page">
           <Filters />
-          <ProductsList />
+          <div>
+            <Sort />
+            <ProductsList />
+          </div>
         </div>
       </Wrapper>
     </>

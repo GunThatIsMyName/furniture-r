@@ -10,6 +10,7 @@ import Footer from "./footer";
 import Sidebar from "./sidebar";
 import Loading from "./loading";
 import ProductsList from "./productsList";
+import Sort from "./sort";
 
 export {
   Sidebar,
@@ -23,5 +24,6 @@ export {
   AboutHero,
   Station,
   Loading,
-  ProductsList
+  ProductsList,
+  Sort
 };

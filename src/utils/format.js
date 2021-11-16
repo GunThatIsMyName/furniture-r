@@ -3,5 +3,5 @@ export const categoryFormat=(lists,category)=>{
     if(category==="colors"){
         list = list.flat()
     }
-    return ["All",...new Set(list)]
+    return ["all",...new Set(list)]
 }

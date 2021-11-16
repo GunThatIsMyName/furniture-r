@@ -1,4 +1,5 @@
 import {
+  filter_product,
   load_products,
   reset_filters,
   update_filters,
@@ -53,6 +54,51 @@ export const productReducer = (state, action) => {
           current_price: state.filter.max_price,
           shipping: false,
         },
+      };
+    case filter_product:
+      const { search, category, company, color, current_price, shipping } =
+        state.filter;
+      let tempProduct = [...state.allProdcuts];
+      if (search) {
+        tempProduct = tempProduct.filter((item) => {
+          return item.name.includes(search);
+        });
+      }
+      if (category !== "all") {
+        tempProduct = tempProduct.filter((item) => {
+          return item.category === category;
+        });
+      }
+      if (company !== "all") {
+        tempProduct = tempProduct.filter((item) => {
+          return item.company === company;
+        });
+      }
+      if (color !== "all") {
+        tempProduct = tempProduct.filter((item) => {
+          return item.colors.find((item) => {
+            return item === color;
+          });
+        });
+      }
+      tempProduct = tempProduct.filter(item=>{
+        return item.price <=current_price;
+      })
+      if(shipping){
+        tempProduct = tempProduct.filter(item=>{
+          return item.shipping
+        })
+      }
+      // if (colors !== "all") {
+      //   tempProducts = tempProducts.filter((product) => {
+      //     return product.colors.find((c) => c === colors);
+      //   });
+      // }
+
+      console.log(tempProduct, "temp");
+      return {
+        ...state,
+        filterdProduct: tempProduct,
       };
     default:
       throw new Error();

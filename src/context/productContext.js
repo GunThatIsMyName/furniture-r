@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import { productReducer, productState } from "../reducer/productReducer";
-import { load_products, reset_filters, update_filters } from "./actioin";
+import { filter_product, load_products, reset_filters, update_filters } from "./actioin";
 import { useUserContext } from "./UserContext";
 
 const ProductContext = React.createContext();
@@ -8,7 +8,6 @@ const ProductContext = React.createContext();
 const ProductProvider=({children})=>{
     const {productsItems}=useUserContext();
     const [state,dispatch]=useReducer(productReducer,productState)
-
     const handleCategory=(e)=>{
         let {name} = e.target;
         let {value}=e.target;
@@ -28,6 +27,10 @@ const ProductProvider=({children})=>{
     useEffect(()=>{
         dispatch({type:load_products,payload:productsItems})
     },[productsItems])
+
+    useEffect(()=>{
+        dispatch({type:filter_product})
+    },[state.filter])
 
     return(
         <ProductContext.Provider value={{...state,handleCategory,clearFilters}}>
