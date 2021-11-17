@@ -5,7 +5,7 @@ import { useProductContext } from "../context/productContext";
 import { sortList } from "../utils/help";
 
 const Sort = () => {
-  const { filterdProduct,handleGridView } = useProductContext();
+  const { filterdProduct,handleGridView,handleSort,sortBy } = useProductContext();
   return (
     <Wrapper>
       <div>
@@ -20,7 +20,7 @@ const Sort = () => {
       <hr />
       <div>
         <label htmlFor="sort">sort by</label>
-        <select name="sort" id="sort">
+        <select onChange={handleSort} name="sort" id="sort">
           {sortList.map((item) => {
             const { id, value, name } = item;
             return (

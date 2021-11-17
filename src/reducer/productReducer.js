@@ -2,6 +2,7 @@ import {
   filter_product,
   load_products,
   reset_filters,
+  sort_product,
   update_filters,
   view_type,
 } from "../context/actioin";
@@ -10,6 +11,7 @@ export const productState = {
   allProdcuts: [],
   filterdProduct: [],
   isGridView:true,
+  sortBy:"name(a-z)",
   filter: {
     search: "",
     category: "all",
@@ -101,6 +103,32 @@ export const productReducer = (state, action) => {
       }else{
         return{...state,isGridView:false}
       }
+    case sort_product:
+      let tempProducts=state.filterdProduct;
+      const type=action.payload
+      if(type==="name-a"){
+        tempProducts.sort((a,b)=>{
+          return a.name.localeCompare(b.name);
+        })
+      }
+      if(type==="name-z"){
+        tempProducts.sort((a,b)=>{
+          return b.name.localeCompare(a.name);
+        })
+      }
+      if(type==="price-lowest"){
+        tempProducts.sort((a,b)=>{
+          return a.price-b.price;
+        })
+      }
+      if(type==="price-highest"){
+        tempProducts.sort((a,b)=>{
+          return b.price-a.price;
+        })
+      }
+      return{
+        ...state,filterdProduct:tempProducts
+      } 
       default:
       throw new Error();
   }
