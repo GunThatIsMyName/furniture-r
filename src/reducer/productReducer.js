@@ -2,6 +2,9 @@ import {
   filter_product,
   load_products,
   reset_filters,
+  singleProduct_data,
+  singleProduct_error,
+  singleProduct_loading,
   sort_product,
   update_filters,
   view_type,
@@ -10,8 +13,8 @@ import {
 export const productState = {
   allProdcuts: [],
   filterdProduct: [],
-  isGridView:true,
-  sortBy:"name(a-z)",
+  isGridView: true,
+  sortBy: "name(a-z)",
   filter: {
     search: "",
     category: "all",
@@ -22,6 +25,9 @@ export const productState = {
     current_price: 0,
     shipping: false,
   },
+  isSingleProductLoading: false,
+  singleProductError: false,
+  singleProducts: {},
 };
 
 export const productReducer = (state, action) => {
@@ -85,51 +91,70 @@ export const productReducer = (state, action) => {
           });
         });
       }
-      tempProduct = tempProduct.filter(item=>{
-        return item.price <=current_price;
-      })
-      if(shipping){
-        tempProduct = tempProduct.filter(item=>{
-          return item.shipping
-        })
+      tempProduct = tempProduct.filter((item) => {
+        return item.price <= current_price;
+      });
+      if (shipping) {
+        tempProduct = tempProduct.filter((item) => {
+          return item.shipping;
+        });
       }
       return {
         ...state,
         filterdProduct: tempProduct,
       };
     case view_type:
-      if(action.payload==="grid"){
-        return {...state,isGridView:true}
-      }else{
-        return{...state,isGridView:false}
+      if (action.payload === "grid") {
+        return { ...state, isGridView: true };
+      } else {
+        return { ...state, isGridView: false };
       }
     case sort_product:
-      let tempProducts=state.filterdProduct;
-      const type=action.payload
-      if(type==="name-a"){
-        tempProducts.sort((a,b)=>{
+      let tempProducts = state.filterdProduct;
+      const type = action.payload;
+      if (type === "name-a") {
+        tempProducts.sort((a, b) => {
           return a.name.localeCompare(b.name);
-        })
+        });
       }
-      if(type==="name-z"){
-        tempProducts.sort((a,b)=>{
+      if (type === "name-z") {
+        tempProducts.sort((a, b) => {
           return b.name.localeCompare(a.name);
-        })
+        });
       }
-      if(type==="price-lowest"){
-        tempProducts.sort((a,b)=>{
-          return a.price-b.price;
-        })
+      if (type === "price-lowest") {
+        tempProducts.sort((a, b) => {
+          return a.price - b.price;
+        });
       }
-      if(type==="price-highest"){
-        tempProducts.sort((a,b)=>{
-          return b.price-a.price;
-        })
+      if (type === "price-highest") {
+        tempProducts.sort((a, b) => {
+          return b.price - a.price;
+        });
       }
-      return{
-        ...state,filterdProduct:tempProducts
-      } 
-      default:
+      return {
+        ...state,
+        filterdProduct: tempProducts,
+      };
+    case singleProduct_loading:
+      return {
+        ...state,
+        isSingleProductLoading: true,
+        singleProductError: false,
+      };
+    case singleProduct_data:
+      return {
+        ...state,
+        singleProducts: action.payload,
+        isSingleProductLoading: false,
+      };
+      case singleProduct_error:
+      return {
+        ...state,
+        singleProductError: true,
+        isSingleProductLoading: false,
+      };
+    default:
       throw new Error();
   }
 };

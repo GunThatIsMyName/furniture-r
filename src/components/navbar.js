@@ -4,8 +4,10 @@ import { FaBars } from "react-icons/fa";
 import { navIcons, navLinks } from "../utils/help";
 import { useUserContext } from "../context";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../context/useCartContext";
 
 const Navbar = () => {
+  const {total_amount}=useCartContext();
   const { handleSidebar } = useUserContext();
   return (
     <Nav>
@@ -30,11 +32,19 @@ const Navbar = () => {
       </ul>
       <div className="nav-functions">
         {navIcons.map((item) => {
+          if(item.name==="cart"){
+            return (
+              <li key={item.id}>
+                <Link to="cart">{item.name}</Link>
+              {item.icon}
+              {item.name === "cart" && <span className="cart-count">{total_amount}</span>}
+            </li>
+            )
+          }
           return (
             <li key={item.id}>
               {item.name}
               {item.icon}
-              {item.name === "cart" && <span className="cart-count">1</span>}
             </li>
           );
         })}
